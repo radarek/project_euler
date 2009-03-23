@@ -12,11 +12,16 @@
 # 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
+require "benchmark"
+
+5.times { puts Benchmark.measure {
+
 cache = Hash.new {|h, k|
   h[k] = 1 + (k.even? ? h[k >> 1] : h[3 * k + 1])
 }
-cache[1] = 1
+cache[0] = cache[1] = 1
 puts (2...1_000_000).to_a.max_by {|e|
   cache[e]
 }
 
+}}

@@ -12,31 +12,28 @@
 # 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
-require "benchmark"
-
-10.times { puts Benchmark.measure {
-
 cache = Array.new(1_000_000)
 cache[0] = cache[1] = 1
-max_len = 1
-max_i = 1
+max_len, max_i = 1, 1
 len = 0
 stack = []
 1_000_000.times do |i|
   next if cache[i]
   while cache[i].nil?
     stack.push(i)
-    i = i.even? ? (i >> 1) : (3 * i + 1)
+    i = i % 2 == 0 ? (i >> 1) : (3 * i + 1)
   end
   len = cache[i]
-  while i = stack.pop
+  stack.reverse_each do |i|
     len += 1
-    cache[i] = len if i < 1_000_000
-    if (len > max_len && i < 1_000_000)
-      max_len = len
-      max_i = i
+    if i < 1_000_000
+      cache[i] = len
+      if (len > max_len)
+        max_len, max_i = len, i
+      end
     end
   end
+  stack.clear
 end
 
-}}
+puts max_i
