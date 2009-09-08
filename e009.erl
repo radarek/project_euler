@@ -1,8 +1,6 @@
 -module(e009).
 -export([main/1, start/0]).
 
--compile(export_all).
-
 main(_) ->
   start().
 
