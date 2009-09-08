@@ -1,4 +1,4 @@
-public class E005 {
+public class e005 {
   public static long product(int from, int to) {
     long result = 1;
     for (int i = from; i < to; i++) {

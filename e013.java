@@ -5,7 +5,7 @@ import java.io.File;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class E013 {
+public class e013 {
   public static BigInteger sumOf(Iterable<BigInteger> numbers) {
     BigInteger sum = new BigInteger("0");
 
