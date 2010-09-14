@@ -3,4 +3,5 @@
 a.out
 *.beam
 *.swp
+*.rbc
 
